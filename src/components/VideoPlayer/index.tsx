@@ -1,13 +1,24 @@
 import React from 'react';
 import { Button, Card } from "react-bootstrap";
+// import YouTubePlayer from 'react-player/lib/players/YouTube';
+import ReactPlayer from 'react-player';
 
 const VideoPlayer: React.FC = () => {
     return <Card>
-        <video src='https://www.youtube.com/watch?v=RDQGPs7StNA'/>
         <Card.Body>
-            <Card.Title>비디오</Card.Title>
-            <Card.Text> 비디오 내용 </Card.Text>
-            <Button variant="primary">영상 종료하기</Button>
+            <ReactPlayer
+                url="https://www.youtube.com/watch?v=RDQGPs7StNA"
+                controls={true}
+                width='100%'
+                height='100%'
+                allowFullScreen
+                config={{
+                    youtube: {
+                        playerVars: { rel: 0, modestbranding: 0, origin: 1 },
+                    },
+                }}
+            />
+            <Button variant="primary">영상카드닫기</Button>
         </Card.Body>
     </Card>
 };
