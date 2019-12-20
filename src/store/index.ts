@@ -1,4 +1,4 @@
-import { compose, createStore } from 'redux';
+import { createStore } from 'redux';
 import rootReducer from './reducers';
 
 import { persistStore, persistReducer } from 'redux-persist';
