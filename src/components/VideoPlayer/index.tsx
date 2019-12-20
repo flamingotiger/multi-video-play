@@ -1,12 +1,23 @@
 import React from 'react';
 import { Button, Card } from "react-bootstrap";
 import ReactPlayer from 'react-player';
+import { CardType, removeCard } from 'store/reducers/card';
+import useCard from 'hooks/card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const VideoPlayer: React.FC = () => {
-    return (<Card>
+interface VideoPlayerProps {
+    card: CardType;
+}
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
+    const [, dispatch] = useCard();
+    return (<Card style={{position:'absolute'}}>
+        <Card.Header>
+            <FontAwesomeIcon style={{ cursor: "pointer" }} onClick={() => dispatch(removeCard(card.id))} size="lg" icon={faTimes} />
+        </Card.Header>
         <Card.Body>
             <ReactPlayer
-                url="https://www.youtube.com/watch?v=RDQGPs7StNA"
+                url={card.url}
                 controls={true}
                 width='100%'
                 height='100%'
@@ -17,7 +28,7 @@ const VideoPlayer: React.FC = () => {
                     },
                 }}
             />
-            <Button variant="primary">영상카드닫기</Button>
+            <Button variant="primary" onClick={() => dispatch(removeCard(card.id))}>CLOSE VIDEO</Button>
         </Card.Body>
     </Card>)
 };
