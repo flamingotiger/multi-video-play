@@ -1,10 +1,9 @@
 import React from 'react';
 import { Button, Card } from "react-bootstrap";
-// import YouTubePlayer from 'react-player/lib/players/YouTube';
 import ReactPlayer from 'react-player';
 
 const VideoPlayer: React.FC = () => {
-    return <Card>
+    return (<Card>
         <Card.Body>
             <ReactPlayer
                 url="https://www.youtube.com/watch?v=RDQGPs7StNA"
@@ -20,7 +19,7 @@ const VideoPlayer: React.FC = () => {
             />
             <Button variant="primary">영상카드닫기</Button>
         </Card.Body>
-    </Card>
+    </Card>)
 };
 
 export default VideoPlayer;
