@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
+import card from './card';
 
-const RootReducer = combineReducers({
-
+const rootReducer = combineReducers({
+    card
 });
 
-export type RootState = ReturnType<typeof RootReducer>
-export default RootReducer;
+export type RootState = ReturnType<typeof rootReducer>
+export default rootReducer;
