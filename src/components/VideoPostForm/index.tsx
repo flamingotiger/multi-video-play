@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import useCard from 'hooks/card';
 import useForm from 'react-hook-form';
 import { addCard } from 'store/reducers/card';

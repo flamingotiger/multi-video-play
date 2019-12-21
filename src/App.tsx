@@ -5,11 +5,13 @@ import styled from 'styled-components';
 import { CardType } from 'store/reducers/card';
 import Header from 'components/Header';
 import VideoPostForm from 'components/VideoPostForm';
+import Splash from 'components/Splash';
 
 const AppStyle = styled.section`
-    background-color: rgb(240,240,240);
-    width: 100%;
-    height: 100%;
+        position:relative;
+        background-color: rgb(240,240,240);
+        width: 100%;
+        height: 100%;
 `
 const ContainerStyle = styled.ul`
         display: flex;
@@ -26,6 +28,7 @@ const App: React.FC = () => {
     const [state] = useCard();
     return (
         <AppStyle>
+            <Splash />
             <Header />
             <ContainerHeadStyle>내 비디오 리스트</ContainerHeadStyle>
             <ContainerStyle>
