@@ -1,52 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Card } from "react-bootstrap";
+import React from 'react';
 import ReactPlayer from 'react-player';
-import { CardType, removeCard, moveCard } from 'store/reducers/card';
+import { CardType, removeCard } from 'store/reducers/card';
 import useCard from 'hooks/card';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
+
+const CardWrapperStyle = styled.li`
+        flex-basis: calc(50% - 40px);
+        margin: 10px;
+        list-style: none;
+`
+
+const CardStyle = styled.div`
+        position: relative;
+        width: 100%;
+        height: 270px;
+        border-radius: 10px;
+        overflow: hidden;
+`;
+
+const Button = styled.button`
+        background: none;
+        border: 0;
+        color: rgb(50,50,50);
+        font-weight: bold;
+        border-radius: 10px;
+`;
 
 interface VideoPlayerProps {
     card: CardType;
 }
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
-    const [dragging, setDragging] = useState<boolean>(false);
     const [, dispatch] = useCard();
     if (!card) return null;
-    
-    const mouseMove = (e: React.MouseEvent) => {
-        if (dragging) {
-            console.log('??')
-            const rect: ClientRect = e.currentTarget.getBoundingClientRect();
-            dispatch(moveCard(card.id, [e.pageX - rect.width / 2, e.pageY - rect.height / 2]));
-        }
-    }
 
-    return (<Card style={{
-        position: 'fixed', left: `${card.measure[0]}px`, top: `${card.measure[1]}px`, zIndex:1021
-    }}>
-        <Card.Header 
-            onMouseDown={() => setDragging(true)} 
-            onMouseMove={(e: React.MouseEvent) => mouseMove(e)} 
-            onMouseUp={() => setDragging(false)}
-            >
-            <FontAwesomeIcon style={{ cursor: "pointer" }} onClick={() => dispatch(removeCard(card.id))} size="lg" icon={faTimes} />
-        </Card.Header>
-        <Card.Body>
-            <ReactPlayer
-                url={card.url}
-                controls={true}
-                width='100%'
-                height='100%'
-                allowFullScreen
-                config={{
-                    youtube: {
-                        playerVars: { rel: 0, modestbranding: 0, origin: 1 },
-                    },
-                }}
-            />
-        </Card.Body>
-    </Card>)
+    return (
+        <CardWrapperStyle>
+            <div>
+                <Button onClick={() => dispatch(removeCard(card.id))}>영상 삭제하기</Button>
+            </div>
+            <CardStyle>
+                <ReactPlayer
+                    url={card.url}
+                    controls={true}
+                    width='100%'
+                    height='100%'
+                    allowFullScreen
+                    config={{
+                        youtube: {
+                            playerVars: { rel: 0, modestbranding: 0, origin: 1 },
+                        },
+                    }}
+                />
+
+            </CardStyle>
+        </CardWrapperStyle>)
 };
 
 export default VideoPlayer;
