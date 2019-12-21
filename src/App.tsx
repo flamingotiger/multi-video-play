@@ -20,9 +20,16 @@ const FormVideoUrlStyle = styled.form`
         justify-content:space-between;
         align-items:center;
         width:100%;
-        
 `
 
+const ContainerStyle = styled.div`
+        position:relative;
+        margin:0;
+        padding:0;
+        width:100vw;
+        height:100vh;
+        max-width:100vw
+`
 const App: React.FC = () => {
     const [state, dispatch] = useCard();
     const { register, handleSubmit } = useForm();
@@ -30,7 +37,12 @@ const App: React.FC = () => {
         const url_check = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
         if (url_check.exec(data.url)) {
             console.log('success');
-            dispatch(addCard(data.url));
+            let measure: [number, number] = [0, 0];
+            if (state.cards.length > 0) {
+                const lastCardMeasure = state.cards[state.cards.length - 1].measure;
+                measure = [lastCardMeasure[0] + 20, lastCardMeasure[1] + 20]
+            };
+            dispatch(addCard(data.url, measure));
         };
     }
 
@@ -44,9 +56,9 @@ const App: React.FC = () => {
                     </Nav.Link>
                 </Navbar.Collapse>
             </Navbar>
-            <Container>
+            <ContainerStyle>
                 {state.cards.map((card: CardType) => <VideoPlayer key={card.id} card={card} />)}
-            </Container>
+            </ContainerStyle>
             <FormBottomStyle>
                 <FormVideoUrlStyle onSubmit={handleSubmit(onSubmit)}>
                     <Form.Control style={{ flex: 8 }} type="text" name="url" defaultValue="https://www.youtube.com/watch?v=RDQGPs7StNA" ref={register} autoComplete="off" placeholder="Input the video url" />
