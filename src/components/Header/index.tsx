@@ -9,7 +9,7 @@ const HeaderStyle = styled.header`
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        padding: .5rem 1rem;
+        padding: 1.2rem 1rem;
 `
 const LinkStyle = styled.a`
         font-weight: bold;
@@ -19,7 +19,7 @@ const LinkStyle = styled.a`
 
 const Header:React.FC = () => {
     return <HeaderStyle>
-        <LinkStyle href="/">React-Multi-Play</LinkStyle>
+        <LinkStyle href="/">Multi-Player</LinkStyle>
         <FontAwesomeIcon icon={faGithub} color='white' />
     </HeaderStyle>
 }

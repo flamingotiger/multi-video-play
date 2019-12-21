@@ -3,6 +3,8 @@ import ReactPlayer from 'react-player';
 import { CardType, removeCard } from 'store/reducers/card';
 import useCard from 'hooks/card';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const CardWrapperStyle = styled.li`
         flex-basis: calc(50% - 40px);
@@ -18,12 +20,13 @@ const CardStyle = styled.div`
         overflow: hidden;
 `;
 
-const Button = styled.button`
+const IconStyle = styled.button`
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
         background: none;
         border: 0;
-        color: rgb(50,50,50);
-        font-weight: bold;
-        border-radius: 10px;
+        outline: none;
 `;
 
 interface VideoPlayerProps {
@@ -36,7 +39,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
     return (
         <CardWrapperStyle>
             <div>
-                <Button onClick={() => dispatch(removeCard(card.id))}>영상 삭제하기</Button>
+                <IconStyle>
+                    <FontAwesomeIcon icon={faTrash} size="2x" onClick={() => dispatch(removeCard(card.id))} />
+                </IconStyle>
+                <div>
+                    {card.title && <h3>{card.title}</h3>}
+                    {card.description && <div>{card.description}</div>}
+                </div>
             </div>
             <CardStyle>
                 <ReactPlayer
@@ -51,7 +60,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
                         },
                     }}
                 />
-
             </CardStyle>
         </CardWrapperStyle>)
 };

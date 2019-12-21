@@ -6,15 +6,15 @@ import { CardType } from 'store/reducers/card';
 import Header from 'components/Header';
 import VideoPostForm from 'components/VideoPostForm';
 
+const AppStyle = styled.section`
+    background-color: rgb(240,240,240);
+    width: 100%;
+    height: 100%;
+`
 const ContainerStyle = styled.ul`
         display: flex;
         flex-wrap: wrap;
-        position: relative;
-        margin: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-        max-width: 100vw
+        max-width: 100%;
 `
 const ContainerHeadStyle = styled.h2`
         font-size: 24px;
@@ -25,14 +25,14 @@ const ContainerHeadStyle = styled.h2`
 const App: React.FC = () => {
     const [state] = useCard();
     return (
-        <div className="App">
+        <AppStyle>
             <Header />
-            <ContainerHeadStyle>비디오 리스트</ContainerHeadStyle>
+            <ContainerHeadStyle>내 비디오 리스트</ContainerHeadStyle>
             <ContainerStyle>
                 {state.cards.map((card: CardType) => <VideoPlayer key={card.id} card={card} />)}
             </ContainerStyle>
            <VideoPostForm />
-        </div>
+        </AppStyle>
     );
 }
 
