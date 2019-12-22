@@ -34,8 +34,9 @@ const AnimIcon = styled.div`
 const SplashStyle = styled.div`
         ${duplicateStyle}
         background: url(${splashImage});
-        background-size: 100%;
+        background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
         z-index: 9997;
         ${(props: SplashState) => {
         if (!props.isSplash) {
