@@ -18,6 +18,9 @@ const ContainerStyle = styled.ul`
         display: flex;
         flex-wrap: wrap;
         max-width: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
 `
 const ContainerHeadStyle = styled.h2`
         font-size: 24px;

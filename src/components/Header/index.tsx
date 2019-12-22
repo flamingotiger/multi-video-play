@@ -13,13 +13,14 @@ const HeaderStyle = styled.header`
 `
 const LinkStyle = styled.a`
         font-weight: bold;
+        font-size: 22px;
         color: white;     
         text-decoration: none;
 `
 
 const Header:React.FC = () => {
     return <HeaderStyle>
-        <LinkStyle href="/">Multi-Player</LinkStyle>
+        <LinkStyle href="/">Multi Player</LinkStyle>
         <FontAwesomeIcon icon={faGithub} color='white' />
     </HeaderStyle>
 }

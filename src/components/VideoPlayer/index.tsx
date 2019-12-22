@@ -4,14 +4,19 @@ import { CardType, removeCard } from 'store/reducers/card';
 import useCard from 'hooks/card';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { formatDistance } from 'date-fns';
 import { ko } from 'date-fns/locale';
 
 const CardWrapperStyle = styled.li`
-        flex-basis: calc(50% - 40px);
+        flex-basis: calc(50% - 20px);
         margin: 10px;
         list-style: none;
+        background: white;
+        border-radius: 10px;
+        @media only screen and (max-width: 768px) {
+            flex-basis: calc(100% - 20px);
+        }
 `
 
 const CardStyle = styled.div`
@@ -22,6 +27,13 @@ const CardStyle = styled.div`
         overflow: hidden;
 `;
 
+const IconWrapperStyle = styled.div`
+        margin: 10px;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 14px;
+        color: ${props => props.color};
+`
 const IconStyle = styled.button`
         width: 30px;
         height: 30px;
@@ -30,7 +42,38 @@ const IconStyle = styled.button`
         border: 0;
         outline: none;
 `;
+const H3 = styled.h3`
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 9px;
+        ${(props: { title: string }) => {
+        if (!props.title) {
+            return `color: rgb(200,200,200);`
+        }
+    }}
+`
+const UpdatedAt = styled.span`
+        font-size: 14px;
+        color: rgb(150,150,150);
+        margin: 5px 0;
+        display: block;
+`
+const Description = styled.p`
+        width: 100%;
+        font-size: 14px;
+        ${(props: { description: string }) => {
+        if (!props.description) {
+            return `color: rgb(200,200,200);`
+        }
+    }}
+`
 
+const Content = styled.div`
+        padding-left: 10px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+`
 interface VideoPlayerProps {
     card: CardType;
 }
@@ -39,16 +82,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
     if (!card) return null;
     return (
         <CardWrapperStyle>
-            <div>
-                <IconStyle>
-                    <FontAwesomeIcon icon={faTrash} size="2x" onClick={() => dispatch(removeCard(card.id))} />
-                </IconStyle>
-                <div>
-                    {card.title && <h3>{card.title}</h3>}
-                    {card.createdAt && <span>{formatDistance(new Date(card.createdAt), new Date(), { locale: ko })}</span>}
-                    {card.description && <div>{card.description}</div>}
-                </div>
-            </div>
+            <Content>
+                <H3 title={card.title}>{card.title ? card.title : "제목 없음"}</H3>
+                <UpdatedAt>{formatDistance(new Date(card.updatedAt), new Date(), { locale: ko })}</UpdatedAt>
+                <Description description={card.description}>{card.description ? card.description : "설명 없음"}</Description>
+            </Content>
             <CardStyle>
                 <ReactPlayer
                     url={card.url}
@@ -63,6 +101,21 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
                     }}
                 />
             </CardStyle>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <IconWrapperStyle color='rgb(75,80,250)'>
+                    <IconStyle>
+                        <FontAwesomeIcon icon={faEdit} size="2x" color='rgb(75,80,250)'/>
+                    </IconStyle>
+                    수정하기
+                </IconWrapperStyle>
+                <IconWrapperStyle color='rgb(225,60,230)' onClick={() => dispatch(removeCard(card.id))}>
+                    <IconStyle>
+                        <FontAwesomeIcon icon={faTrash} size="2x" color='rgb(225,60,230)'/>
+                    </IconStyle>
+                    삭제하기
+                </IconWrapperStyle>
+            </div>
+
         </CardWrapperStyle>)
 };
 

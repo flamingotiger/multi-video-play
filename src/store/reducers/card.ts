@@ -8,8 +8,8 @@ export const REMOVE_CARD = "REMOVE_CARD";
 
 export const addCard = (url: string, title: string = '', description: string = '') => {
     const id: string = uuid.v4();
-    const createdAt: string = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
-    return action(ADD_CARD, { id, url, title, description, createdAt });
+    const updatedAt: string = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
+    return action(ADD_CARD, { id, url, title, description, updatedAt });
 };
 
 export const removeCard = (id: string) => action(REMOVE_CARD, { id });
@@ -26,7 +26,7 @@ export interface CardType {
     url: string;
     title: string;
     description: string;
-    createdAt: string;
+    updatedAt: string;
 }
 
 export interface CardState {
@@ -47,7 +47,7 @@ export default createReducer<CardState, CardActions>(initialState, {
                 id: action.payload.id, 
                 title: action.payload.title,
                 description: action.payload.description,
-                createdAt: action.payload.createdAt
+                updatedAt: action.payload.updatedAt
             }];
         }),
     [REMOVE_CARD]: (state, action) =>
