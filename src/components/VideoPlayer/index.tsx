@@ -32,7 +32,12 @@ const IconWrapperStyle = styled.div`
         display: inline-block;
         cursor: pointer;
         font-size: 14px;
-        color: ${props => props.color};
+        &:hover{
+            color: ${props => props.color};
+            path {
+                fill: ${props => props.color};
+            }
+        }
 `
 const IconStyle = styled.button`
         width: 30px;
@@ -104,13 +109,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <IconWrapperStyle color='rgb(75,80,250)'>
                     <IconStyle>
-                        <FontAwesomeIcon icon={faEdit} size="2x" color='rgb(75,80,250)'/>
+                        <FontAwesomeIcon icon={faEdit} size="2x" />
                     </IconStyle>
                     수정하기
                 </IconWrapperStyle>
                 <IconWrapperStyle color='rgb(225,60,230)' onClick={() => dispatch(removeCard(card.id))}>
                     <IconStyle>
-                        <FontAwesomeIcon icon={faTrash} size="2x" color='rgb(225,60,230)'/>
+                        <FontAwesomeIcon icon={faTrash} size="2x" />
                     </IconStyle>
                     삭제하기
                 </IconWrapperStyle>

@@ -22,6 +22,7 @@ const FormPostStyle = styled.div`
 const FormHeadStyle = styled.h2`
         text-align: center;
         font-size: 24px;
+        margin-bottom: 20px;
 `
 const FormVideoUrlStyle = styled.form`
         width: 100%;
