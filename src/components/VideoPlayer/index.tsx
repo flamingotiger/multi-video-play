@@ -5,6 +5,8 @@ import useCard from 'hooks/card';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { formatDistance } from 'date-fns';
+import { ko } from 'date-fns/locale';
 
 const CardWrapperStyle = styled.li`
         flex-basis: calc(50% - 40px);
@@ -43,6 +45,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
                 </IconStyle>
                 <div>
                     {card.title && <h3>{card.title}</h3>}
+                    {card.createdAt && <span>{formatDistance(new Date(card.createdAt), new Date(), { locale: ko })}</span>}
                     {card.description && <div>{card.description}</div>}
                 </div>
             </div>

@@ -1,13 +1,15 @@
 import produce from 'immer';
 import { action, ActionType, createReducer } from 'typesafe-actions';
 import uuid from "uuid";
+import { format } from 'date-fns';
 
 export const ADD_CARD = "ADD_CARD";
 export const REMOVE_CARD = "REMOVE_CARD";
 
 export const addCard = (url: string, title: string = '', description: string = '') => {
     const id: string = uuid.v4();
-    return action(ADD_CARD, { id, url, title, description });
+    const createdAt: string = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
+    return action(ADD_CARD, { id, url, title, description, createdAt });
 };
 
 export const removeCard = (id: string) => action(REMOVE_CARD, { id });
@@ -24,6 +26,7 @@ export interface CardType {
     url: string;
     title: string;
     description: string;
+    createdAt: string;
 }
 
 export interface CardState {
@@ -43,7 +46,8 @@ export default createReducer<CardState, CardActions>(initialState, {
                 url: action.payload.url, 
                 id: action.payload.id, 
                 title: action.payload.title,
-                description: action.payload.description
+                description: action.payload.description,
+                createdAt: action.payload.createdAt
             }];
         }),
     [REMOVE_CARD]: (state, action) =>
