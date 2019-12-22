@@ -1,25 +1,23 @@
 {
   "files": {
-    "main.css": "/multi-video-play/static/css/main.88824ec2.chunk.css",
-    "main.js": "/multi-video-play/static/js/main.09be603b.chunk.js",
-    "main.js.map": "/multi-video-play/static/js/main.09be603b.chunk.js.map",
+    "main.css": "/multi-video-play/static/css/main.d77e865f.chunk.css",
+    "main.js": "/multi-video-play/static/js/main.071819d9.chunk.js",
+    "main.js.map": "/multi-video-play/static/js/main.071819d9.chunk.js.map",
     "runtime-main.js": "/multi-video-play/static/js/runtime-main.3e9e8af0.js",
     "runtime-main.js.map": "/multi-video-play/static/js/runtime-main.3e9e8af0.js.map",
-    "static/css/2.17e5ed98.chunk.css": "/multi-video-play/static/css/2.17e5ed98.chunk.css",
-    "static/js/2.eebd291e.chunk.js": "/multi-video-play/static/js/2.eebd291e.chunk.js",
-    "static/js/2.eebd291e.chunk.js.map": "/multi-video-play/static/js/2.eebd291e.chunk.js.map",
+    "static/js/2.d2d2861c.chunk.js": "/multi-video-play/static/js/2.d2d2861c.chunk.js",
+    "static/js/2.d2d2861c.chunk.js.map": "/multi-video-play/static/js/2.d2d2861c.chunk.js.map",
     "index.html": "/multi-video-play/index.html",
-    "precache-manifest.31a0deaaca32ef441ceee329534bcbed.js": "/multi-video-play/precache-manifest.31a0deaaca32ef441ceee329534bcbed.js",
+    "precache-manifest.471bd27422844276a136880e9490d3c2.js": "/multi-video-play/precache-manifest.471bd27422844276a136880e9490d3c2.js",
     "service-worker.js": "/multi-video-play/service-worker.js",
-    "static/css/2.17e5ed98.chunk.css.map": "/multi-video-play/static/css/2.17e5ed98.chunk.css.map",
-    "static/css/main.88824ec2.chunk.css.map": "/multi-video-play/static/css/main.88824ec2.chunk.css.map",
-    "static/js/2.eebd291e.chunk.js.LICENSE": "/multi-video-play/static/js/2.eebd291e.chunk.js.LICENSE"
+    "static/css/main.d77e865f.chunk.css.map": "/multi-video-play/static/css/main.d77e865f.chunk.css.map",
+    "static/js/2.d2d2861c.chunk.js.LICENSE": "/multi-video-play/static/js/2.d2d2861c.chunk.js.LICENSE",
+    "static/media/splash.jpg": "/multi-video-play/static/media/splash.404cf0db.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.3e9e8af0.js",
-    "static/css/2.17e5ed98.chunk.css",
-    "static/js/2.eebd291e.chunk.js",
-    "static/css/main.88824ec2.chunk.css",
-    "static/js/main.09be603b.chunk.js"
+    "static/js/2.d2d2861c.chunk.js",
+    "static/css/main.d77e865f.chunk.css",
+    "static/js/main.071819d9.chunk.js"
   ]
 }
