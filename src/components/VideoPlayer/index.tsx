@@ -35,7 +35,6 @@ interface VideoPlayerProps {
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
     const [, dispatch] = useCard();
     if (!card) return null;
-
     return (
         <CardWrapperStyle>
             <div>

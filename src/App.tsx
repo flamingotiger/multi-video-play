@@ -1,6 +1,7 @@
 import React from 'react';
 import VideoPlayer from 'components/VideoPlayer';
 import useCard from 'hooks/card';
+import useSplash from 'hooks/splash';
 import styled from 'styled-components';
 import { CardType } from 'store/reducers/card';
 import Header from 'components/Header';
@@ -26,15 +27,18 @@ const ContainerHeadStyle = styled.h2`
 `
 const App: React.FC = () => {
     const [state] = useCard();
+    const [splashState] = useSplash();
     return (
         <AppStyle>
             <Splash />
-            <Header />
-            <ContainerHeadStyle>내 비디오 리스트</ContainerHeadStyle>
-            <ContainerStyle>
-                {state.cards.map((card: CardType) => <VideoPlayer key={card.id} card={card} />)}
-            </ContainerStyle>
-           <VideoPostForm />
+            {!splashState.isSplash && <>
+                <Header />
+                <ContainerHeadStyle>내 비디오 리스트</ContainerHeadStyle>
+                <ContainerStyle>
+                    {state.cards.map((card: CardType) => <VideoPlayer key={card.id} card={card} />)}
+                </ContainerStyle>
+                <VideoPostForm />
+            </>}
         </AppStyle>
     );
 }
