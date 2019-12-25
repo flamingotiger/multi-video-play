@@ -1,7 +1,6 @@
 import React from 'react';
-import VideoPlayer from 'components/VideoPlayer';
-import useCard from 'hooks/card';
-import useSplash from 'hooks/splash';
+import VideoPlayer from 'components/Card';
+import { useSplash, useCard, useCardForm } from 'hooks/initialHooks';
 import styled from 'styled-components';
 import { CardType } from 'store/reducers/card';
 import Header from 'components/Header';
@@ -9,9 +8,7 @@ import VideoPostForm from 'components/VideoPostForm';
 import Splash from 'components/Splash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileVideo, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
 import { showForm, hideForm } from 'store/reducers/form';
-import { RootState } from 'store/reducers';
 
 const AppStyle = styled.section`
         position:relative;
@@ -54,8 +51,7 @@ const CardButton = styled.div`
 const App: React.FC = () => {
     const [state] = useCard();
     const [splashState] = useSplash();
-    const formState = useSelector((state: RootState) => state.form);
-    const dispatch = useDispatch();
+    const [formState, dispatch] = useCardForm();
     return (
         <AppStyle>
             <Splash />

@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { CardType, removeCard } from 'store/reducers/card';
-import useCard from 'hooks/card';
+import { useCard } from 'hooks/initialHooks';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { formatDistance } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import { showForm } from 'store/reducers/form';
 
 const CardWrapperStyle = styled.li`
         flex-basis: calc(50% - 20px);
@@ -85,6 +86,9 @@ interface VideoPlayerProps {
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
     const [, dispatch] = useCard();
     if (!card) return null;
+    const update = (card: CardType) => {
+        dispatch(showForm(card));
+    }
     return (
         <CardWrapperStyle>
             <Content>
@@ -107,7 +111,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ card }) => {
                 />
             </CardStyle>
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <IconWrapperStyle color='rgb(75,80,250)'>
+                <IconWrapperStyle color='rgb(75,80,250)' onClick={() => update(card)}>
                     <IconStyle>
                         <FontAwesomeIcon icon={faEdit} size="2x" />
                     </IconStyle>

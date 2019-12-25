@@ -4,7 +4,7 @@ import splashImage from 'assets/splash.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { startSplash, SplashState } from 'store/reducers/splash';
-import useSplash from 'hooks/splash';
+import { useSplash } from 'hooks/initialHooks';
 
 const duplicateStyle = `
         position: fixed;

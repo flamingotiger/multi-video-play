@@ -20,7 +20,7 @@ const LinkStyle = styled.a`
 
 const Header:React.FC = () => {
     return <HeaderStyle>
-        <LinkStyle href="/">Multi Player</LinkStyle>
+        <LinkStyle href="https://flamingotiger.github.io/multi-video-play/">Multi Player</LinkStyle>
         <FontAwesomeIcon icon={faGithub} color='white' />
     </HeaderStyle>
 }

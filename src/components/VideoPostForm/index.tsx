@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import useCard from 'hooks/card';
+import { useCard, useCardForm } from 'hooks/initialHooks';
 import useForm from 'react-hook-form';
-import { addCard } from 'store/reducers/card';
+import { addCard, updateCard } from 'store/reducers/card';
 import { hideForm } from 'store/reducers/form';
 
 const FormPostStyle = styled.div`
@@ -37,7 +37,6 @@ const FormButtonStyle = styled.button`
         padding: 10px;
         box-sizing: border-box;
         color: white;
-        cursor: pointer;
         background: linear-gradient(90deg, rgb(75,80,250), rgb(225,60,230));
         border: none;
         font-weight: bold;
@@ -75,12 +74,18 @@ const FormLabel = styled.label`
 const VideoPostForm: React.FC = () => {
     const [, dispatch] = useCard();
     const { register, handleSubmit } = useForm();
+    const [state] = useCardForm();
 
     const onSubmit = (data: any) => {
+        // eslint-disable-next-line no-useless-escape
         const url_check = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
         if (url_check.exec(data.url)) {
-            console.log('success');
-            dispatch(addCard(data.url, data.title, data.description));
+            if(state.card){
+                dispatch(updateCard(state.card.id, data.url, data.title, data.description));
+            }else{
+                dispatch(addCard(data.url, data.title, data.description));
+            }
+            
             dispatch(hideForm());
         };
     }
@@ -88,11 +93,29 @@ const VideoPostForm: React.FC = () => {
         <FormVideoWrapperStyle onSubmit={handleSubmit(onSubmit)}>
             <FormHeadStyle>비디오영상 추가하기</FormHeadStyle>
             <FormLabel>Video url</FormLabel>
-            <FormInput type="text" name="url" defaultValue="https://www.youtube.com/watch?v=RDQGPs7StNA" ref={register} autoComplete="off" placeholder="Youtube URL을 입력해주세요" />
+            <FormInput 
+                    type="text" 
+                    name="url" 
+                    defaultValue={state.card && state.card.url ? state.card.url : "https://www.youtube.com/watch?v=RDQGPs7StNA"} 
+                    ref={register} 
+                    autoComplete="off" 
+                    placeholder="Youtube URL을 입력해주세요" />
             <FormLabel>Title</FormLabel>
-            <FormInput type="text" name="title" ref={register} autoComplete="off" placeholder="제목을 입력해주세요" />
+            <FormInput 
+                    type="text" 
+                    name="title" 
+                    defaultValue={state.card && state.card.title ? state.card.title : ''}
+                    ref={register} 
+                    autoComplete="off" 
+                    placeholder="제목을 입력해주세요" />
             <FormLabel>Description</FormLabel>
-            <FormInput type="text" name="description" ref={register} autoComplete="off" placeholder="설명을 입력해주세요" />
+            <FormInput 
+                    type="text" 
+                    name="description" 
+                    defaultValue={state.card && state.card.description ? state.card.description : ''}
+                    ref={register} 
+                    autoComplete="off" 
+                    placeholder="설명을 입력해주세요" />
             <FormButtonStyle type="submit">추가하기</FormButtonStyle>
         </FormVideoWrapperStyle>
     </FormPostStyle>
