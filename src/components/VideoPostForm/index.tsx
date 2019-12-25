@@ -57,7 +57,6 @@ const FormInput = styled.input`
         border-right: 0;
         border-bottom: 1px solid rgb(240,240,240);
         border-top: 0;
-        border-radius: 5px;
         outline: none;
         transition: 500ms;
         &:focus {
@@ -92,7 +91,7 @@ const VideoPostForm: React.FC = () => {
     return <FormPostStyle>
         <FormVideoWrapperStyle onSubmit={handleSubmit(onSubmit)}>
             <FormHeadStyle>비디오영상 추가하기</FormHeadStyle>
-            <FormLabel>Video url</FormLabel>
+            <FormLabel>비디오 URL</FormLabel>
             <FormInput 
                     type="text" 
                     name="url" 
@@ -100,7 +99,7 @@ const VideoPostForm: React.FC = () => {
                     ref={register} 
                     autoComplete="off" 
                     placeholder="Youtube URL을 입력해주세요" />
-            <FormLabel>Title</FormLabel>
+            <FormLabel>타이틀</FormLabel>
             <FormInput 
                     type="text" 
                     name="title" 
@@ -108,7 +107,7 @@ const VideoPostForm: React.FC = () => {
                     ref={register} 
                     autoComplete="off" 
                     placeholder="제목을 입력해주세요" />
-            <FormLabel>Description</FormLabel>
+            <FormLabel>설명</FormLabel>
             <FormInput 
                     type="text" 
                     name="description" 
@@ -116,7 +115,7 @@ const VideoPostForm: React.FC = () => {
                     ref={register} 
                     autoComplete="off" 
                     placeholder="설명을 입력해주세요" />
-            <FormButtonStyle type="submit">추가하기</FormButtonStyle>
+            <FormButtonStyle type="submit">{state.card ? "수정하기" : "추가하기"}</FormButtonStyle>
         </FormVideoWrapperStyle>
     </FormPostStyle>
 };

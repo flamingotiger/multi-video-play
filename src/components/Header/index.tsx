@@ -17,11 +17,17 @@ const LinkStyle = styled.a`
         color: white;     
         text-decoration: none;
 `
+const HeaderIcon = styled.div`
+        cursor: pointer;
+        display: inline-block;
+`
 
-const Header:React.FC = () => {
+const Header: React.FC = () => {
     return <HeaderStyle>
         <LinkStyle href="https://flamingotiger.github.io/multi-video-play/">Multi Player</LinkStyle>
-        <FontAwesomeIcon icon={faGithub} color='white' />
+        <HeaderIcon>
+            <FontAwesomeIcon icon={faGithub} color='white' />
+        </HeaderIcon>
     </HeaderStyle>
 }
 
