@@ -3,20 +3,19 @@ import styled from 'styled-components';
 import useCard from 'hooks/card';
 import useForm from 'react-hook-form';
 import { addCard } from 'store/reducers/card';
+import { hideForm } from 'store/reducers/form';
 
 const FormPostStyle = styled.div`
         position: fixed; 
-        bottom: -470px;
-        left: 50%;
-        margin-left: -200px;
-        width: 400px;
-        height: 500px;
-        transition: 200ms;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         box-sizing:border-box;
-        &:hover{
-            bottom:0;
-        }
-        background:none;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
 `
 
 const FormHeadStyle = styled.h2`
@@ -24,8 +23,9 @@ const FormHeadStyle = styled.h2`
         font-size: 24px;
         margin-bottom: 20px;
 `
-const FormVideoUrlStyle = styled.form`
+const FormVideoWrapperStyle = styled.form`
         width: 100%;
+        max-width: 500px;
         padding: 40px;
         box-sizing: border-box;
         background: white;
@@ -37,7 +37,7 @@ const FormButtonStyle = styled.button`
         padding: 10px;
         box-sizing: border-box;
         color: white;
-        cursour: pointer;
+        cursor: pointer;
         background: linear-gradient(90deg, rgb(75,80,250), rgb(225,60,230));
         border: none;
         font-weight: bold;
@@ -58,7 +58,7 @@ const FormInput = styled.input`
         border-right: 0;
         border-bottom: 1px solid rgb(240,240,240);
         border-top: 0;
-        boder-radius: 5px;
+        border-radius: 5px;
         outline: none;
         transition: 500ms;
         &:focus {
@@ -81,10 +81,11 @@ const VideoPostForm: React.FC = () => {
         if (url_check.exec(data.url)) {
             console.log('success');
             dispatch(addCard(data.url, data.title, data.description));
+            dispatch(hideForm());
         };
     }
     return <FormPostStyle>
-        <FormVideoUrlStyle onSubmit={handleSubmit(onSubmit)}>
+        <FormVideoWrapperStyle onSubmit={handleSubmit(onSubmit)}>
             <FormHeadStyle>비디오영상 추가하기</FormHeadStyle>
             <FormLabel>Video url</FormLabel>
             <FormInput type="text" name="url" defaultValue="https://www.youtube.com/watch?v=RDQGPs7StNA" ref={register} autoComplete="off" placeholder="Youtube URL을 입력해주세요" />
@@ -93,7 +94,7 @@ const VideoPostForm: React.FC = () => {
             <FormLabel>Description</FormLabel>
             <FormInput type="text" name="description" ref={register} autoComplete="off" placeholder="설명을 입력해주세요" />
             <FormButtonStyle type="submit">추가하기</FormButtonStyle>
-        </FormVideoUrlStyle>
+        </FormVideoWrapperStyle>
     </FormPostStyle>
 };
 

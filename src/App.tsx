@@ -7,6 +7,11 @@ import { CardType } from 'store/reducers/card';
 import Header from 'components/Header';
 import VideoPostForm from 'components/VideoPostForm';
 import Splash from 'components/Splash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileVideo, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { showForm, hideForm } from 'store/reducers/form';
+import { RootState } from 'store/reducers';
 
 const AppStyle = styled.section`
         position:relative;
@@ -28,9 +33,29 @@ const ContainerHeadStyle = styled.h2`
         font-weight: bold;
         padding: 0;
 `
+
+const CardButton = styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        position: fixed;
+        background: linear-gradient(90deg, rgb(75,80,250), rgb(225,60,230));
+        right: 20px;
+        bottom: 20px;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover{
+            transform: translateY(-10px);   
+        }
+`
 const App: React.FC = () => {
     const [state] = useCard();
     const [splashState] = useSplash();
+    const formState = useSelector((state: RootState) => state.form);
+    const dispatch = useDispatch();
     return (
         <AppStyle>
             <Splash />
@@ -40,7 +65,10 @@ const App: React.FC = () => {
                 <ContainerStyle>
                     {state.cards.map((card: CardType) => <VideoPlayer key={card.id} card={card} />)}
                 </ContainerStyle>
-                <VideoPostForm />
+                {formState.isForm && <VideoPostForm />}
+                <CardButton onClick={() => dispatch(formState.isForm ? hideForm() : showForm())}>
+                    <FontAwesomeIcon icon={formState.isForm ? faTimes : faFileVideo} color="#fff" size="lg" />
+                </CardButton>
             </>}
         </AppStyle>
     );
