@@ -95,7 +95,7 @@ const VideoPostForm: React.FC = () => {
             <FormInput 
                     type="text" 
                     name="url" 
-                    defaultValue={state.card && state.card.url ? state.card.url : "https://www.youtube.com/watch?v=RDQGPs7StNA"} 
+                    defaultValue={state.card && state.card.url ? state.card.url : ''} 
                     ref={register} 
                     autoComplete="off" 
                     placeholder="Youtube URL을 입력해주세요" />
