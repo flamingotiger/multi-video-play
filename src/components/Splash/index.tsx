@@ -91,7 +91,7 @@ const Splash = () => {
                 <ContentWrapperStyle>
                     <div>
                         <H1>Muli Player</H1>
-                        <H2>여러개의 영상을 한번에 볼수 있습니다.</H2>
+                        <H2>여러개의 영상을 동시에 시청할 수 있습니다.</H2>
                     </div>
                     <AnimIcon>
                         <FontAwesomeIcon icon={faArrowRight} color="white" size="7x" onClick={() => dispatch(startSplash())} />
